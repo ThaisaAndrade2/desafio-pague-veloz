@@ -1,37 +1,98 @@
-// Importando o comando customizado para criar dados do body da requisição
-import { generateData } from '../../support/factories/factory.js';
+// Importando apenas as ferramentas de DADOS necessárias
+import { generateData } from "../../support/factories/factory.js";
+import { getRandomPostId } from "../../support/helpers.js";
 
-describe('Testes da API', () => {
+describe("Testes da API (JSON Placeholder) - Validação dos endpoints", () => {
+  //Variaveis reutilizáveis
+  const responseTimeLimit = Cypress.env("responseTimeLimit");
+  let postSchema;
+  let commentsSchema;
 
-  it('Realizando um POST com dados dinâmicos e validando o schema da resposta', () => {
-    
-    // Carregando o arquivo de schema
-    cy.fixture('schemas/post_schema.json').then((postSchema) => {
+  // Carregando os schemas uma vez para todos os testes
+  before(() => {
+    cy.fixture("schemas/post_schema.json").then((schema) => {
+      postSchema = schema;
+    });
+    cy.fixture("schemas/post_comments_schema.json").then((schema) => {
+      commentsSchema = schema;
+    });
+  });
 
-      // Definindo o tempo máximo de resposta
-      const responseTimeLimit = Cypress.env('responseTimeLimit');
+  it("[POST] - Deve criar uma nova postagem com sucesso", () => {
+    const postData = generateData();
+    cy.log("Dados gerados pela Factory:", JSON.stringify(postData));
 
-      // Criando os dados dinâmicos
-      const userData = generateData();
- 
-      cy.log('Dados gerados pela Factory:', JSON.stringify(userData));
+    cy.createPost(postData).then((response) => {
+      cy.validateStatusAndTime(response, 201, responseTimeLimit);
+      cy.validateSchemaAndContent(response.body, postSchema, postData);
+    });
+  });
 
-      // Fazendo a requisição com os dados gerados e as validações necessárias
-      cy.createPost(userData).then((response) => {
+  it("[GET] - Deve listar todas as postagens existentes", () => {
+    cy.getAllPosts().then((response) => {
+      cy.validateStatusAndTime(response, 200, responseTimeLimit);
+      expect(response.body).to.be.an("array").and.not.to.be.empty;
+      cy.validateSchemaAndContent(response.body[0], postSchema);
+    });
+  });
 
-        // Verificando o status Code
-        expect(response.status).to.eq(201);
+  it("[GET] - Deve listar uma postagem específica por ID", () => {
+    getRandomPostId().then((postId) => {
+      cy.getItemByPostId(postId).then((response) => {
+        cy.validateStatusAndTime(response, 200, responseTimeLimit);
+        cy.validateSchemaAndContent(response.body, postSchema, { id: postId });
+        expect(response.body).to.be.an("object").and.not.be.an("array");
+      });
+    });
+  });
 
-        // Verificando o tempo de resposta é menor ou igual ao limite definido
-        expect(response.duration, `O tempo de resposta foi de ${response.duration}ms, o que é maior que o limite de ${responseTimeLimit}ms!`).to.be.lte(responseTimeLimit);
+  it("[GET] - Deve listar comentários de uma postagem por query", () => {
+    getRandomPostId().then((postId) => {
+      cy.getPostCommentsByQuery(postId).then((response) => {
+        cy.validateStatusAndTime(response, 200, responseTimeLimit);
+        expect(response.body).to.be.an("array");
+        if (response.body.length > 0) {
+          cy.validateSchemaAndContent(response.body[0], commentsSchema, { postId: postId });
+        }
+      });
+    });
+  });
 
-        // Validação do schema da resposta
-        expect(response.body).to.be.jsonSchema(postSchema);
+  it("[PATCH] - Deve atualizar parcialmente uma postagem", () => {
+    getRandomPostId().then((postId) => {
+      cy.getItemByPostId(postId).then((originalResponse) => {
+        const originalBody = originalResponse.body.body;
+        const partialUpdate = { title: generateData().title };
 
-        // Validação do conteúdo da resposta
-        expect(response.body.userId).to.eq(userData.userId);
-        expect(response.body.title).to.eq(userData.title);
-        expect(response.body.body).to.eq(userData.body);
+        cy.updatePostByPatch(postId, partialUpdate).then((response) => {
+          cy.validateStatusAndTime(response, 200, responseTimeLimit);
+          cy.validateSchemaAndContent(response.body, postSchema, {
+            id: postId,
+            title: partialUpdate.title,
+            body: originalBody,
+          });
+        });
+      });
+    });
+  });
+
+  it("[PUT] - Deve substituir totalmente uma postagem", () => {
+    getRandomPostId().then((postId) => {
+      const newPostData = generateData();
+      const putPayload = { id: postId, ...newPostData };
+
+      cy.updatePostByPut(postId, putPayload).then((response) => {
+        cy.validateStatusAndTime(response, 200, responseTimeLimit);
+        cy.validateSchemaAndContent(response.body, postSchema, putPayload);
+      });
+    });
+  });
+
+  it('[DELETE] - Deve deletar uma postagem por ID', () => {
+    getRandomPostId().then((postId) => {
+      cy.deletePostById(postId).then((response) => {
+        cy.validateStatusAndTime(response, 200, responseTimeLimit);
+        expect(response.body).to.be.empty;
       });
     });
   });
