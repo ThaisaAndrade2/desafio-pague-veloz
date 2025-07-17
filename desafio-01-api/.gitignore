@@ -1,0 +1,10 @@
+
+# Dependências do Node.js que vai ser criada ao usar o comando `npm install`.
+/node_modules
+
+# Os artefatos do Cypress serão gerados em tempo de execução
+/cypress/videos/
+/cypress/screenshots/
+/cypress/downloads/
+/cypress/logs/
+
