@@ -36,7 +36,7 @@
 **Problema:**  
 Ao realizar a requisição com um parâmetro não mapeado (`nome`), em vez de retornar erro, o endpoint realiza o POST com sucesso, retorna status **201** e ainda traz esse novo atributo na resposta.
 
-![Evidência Bug 01](cypress/evidence/bug01.png)
+![Evidência Bug 01](cypress/evidences/bug01.png)
 
 **Severidade:** 🟧 Alta (Risco de segurança e poluição de dados)  
 **Prioridade:** 🟧 Alta (Violações de segurança devem ser tratadas rapidamente)  
@@ -60,7 +60,7 @@ Esse comportamento poderia gerar vulnerabilidades de segurança como Mass Assign
 **Problema:**  
 Ao realizar a requisição POST com o corpo vazio (sem nenhum dado no body ou sem nenhum atributo), o endpoint retorna status **201** (Created) com sucesso e gera um novo recurso, mesmo sem dados enviados.
 
-![Evidência Bug 02](cypress/evidence/bug02.png)
+![Evidência Bug 02](cypress/evidences/bug02.png)
 
 **Severidade:** 🟨 Média (Causa inconsistência de dados, mas não quebra o sistema)  
 **Prioridade:** 🟨 Média (Deve ser corrigido para garantir a integridade dos dados)  
@@ -83,7 +83,7 @@ Ao realizar a requisição POST com o corpo vazio, o endpoint retorna status 201
 **Problema:**  
 Ao realizar a requisição GET buscando comentários de um post com **ID inexistente**, o endpoint retorna status **200** (OK) com body vazio (`[]`), em vez de retornar um **404 Not Found**.
 
-![Evidência Bug 03](cypress/evidence/bug03.png)
+![Evidência Bug 03](cypress/evidences/bug03.png)
 
 **Severidade:** 🟩 Baixa (Não causa erro, mas a resposta é ambígua)  
 **Prioridade:** 🟩 Baixa (É uma melhoria de clareza da API, não um defeito funcional crítico)  
@@ -106,7 +106,7 @@ Esse comportamento pode gerar erros de lógica nos consumidores da API, pois nã
 **Problema:**  
 Ao realizar a requisição GET filtrando comentários pelo **postId inexistente**, o endpoint retorna status **200** (OK) com body vazio (`[]`), em vez de retornar um **404 Not Found**.
 
-![Evidência Bug 04](cypress/evidence/bug04.png)
+![Evidência Bug 04](cypress/evidences/bug04.png)
 
 **Severidade:** 🟩 Baixa  
 **Prioridade:** 🟩 Baixa  
@@ -136,7 +136,7 @@ Ao realizar uma requisição PATCH para atualizar um post com **ID inexistente**
 - Não retorna o campo `id` na resposta, diferentemente dos outros cenários.
 - Não indica erro ou ausência do recurso, realizando a operação como se fosse válida.
 
-![Evidência Bug 05](cypress/evidence/bug05.png)
+![Evidência Bug 05](cypress/evidences/bug05.png)
 
 **Severidade:** 🟨 Média (Quebra o contrato da API e retorna uma resposta inconsistente)  
 **Prioridade:** 🟨 Média (Inconsistências no contrato devem ser corrigidas para não quebrar clientes da API) 
@@ -165,7 +165,7 @@ Não informa que o recurso não existe (deveria ser 404). Além disso, quebra o 
 **Problema:**  
 Ao enviar uma requisição POST para `/posts` com o campo **userId como string ("Texto aleatório")**, a API retorna status **201 (Created)** e salva o valor como se fosse válido.
 
-![Evidência Bug 06](cypress/evidence/bug06.png)
+![Evidência Bug 06](cypress/evidences/bug06.png)
 
 **Severidade:** 🟧 Alta (Corrupção de dados e quebra de contrato de tipo)  
 **Prioridade:** 🟧 Alta (Problemas de integridade de dados devem ser tratados com urgência)  
@@ -195,7 +195,7 @@ Ao enviar uma requisição PATCH com body vazio para `/posts/{id}`, a API retorn
 - Não faz nenhuma alteração nos dados.
 - Retorna a resposta como se tivesse atualizado algo, induzindo o cliente a entender que a operação foi realizada com sucesso.
 
-![Evidência Bug 07](cypress/evidence/bug07.png)
+![Evidência Bug 07](cypress/evidences/bug07.png)
 
 **Severidade:** 🟩 Baixa (Comportamento enganoso, mas sem perda de dados)  
 **Prioridade:** 🟩 Baixa 
@@ -226,7 +226,7 @@ O status 200 implica que a atualização foi bem sucedida, quando nada foi alter
 **Problema:**  
 Ao enviar uma requisição PUT para substituir um recurso inexistente, a API retorna um **status 500 Internal Server Error**, em vez de retornar **404 Not Found**, que seria o comportamento esperado numa API RESTful bem construída.
 
-![Evidência Bug 08](cypress/evidence/bug08.png)
+![Evidência Bug 08](cypress/evidences/bug08.png)
 
 **Severidade:** 🟨 Média (Retorna um status de erro incorreto, mascarando a causa real)  
 **Prioridade:** 🟩 Baixa  
@@ -248,7 +248,7 @@ O status 500 indica falha interna do servidor, mas o erro é que o recurso não 
 **Problema:**  
 Ao enviar uma requisição DELETE para deletar um recurso inexistente, a API retorna um **status 200 OK**, em vez de retornar **404 Not Found**, que seria o comportamento esperado numa API RESTful bem construída.
 
-![Evidência Bug 09](cypress/evidence/bug09.png)
+![Evidência Bug 09](cypress/evidences/bug09.png)
 
 **Severidade:** 🔥 Crítica (Implicações de segurança e integridade de dados)  
 **Prioridade:** 🟧 Alta  

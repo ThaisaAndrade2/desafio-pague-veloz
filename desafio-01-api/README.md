@@ -98,17 +98,19 @@ module.exports = {
 
 ## 🏃 Execução dos Testes
 
-Para rodar os testes em modo headless (terminal):
+Para rodar especificamente os testes de API em modo headless:
 
 ```bash
-npx cypress run
+npm run test:api
 ```
 
 Para abrir a interface do Cypress e acompanhar os testes em tempo real:
 
 ```bash
-npx cypress open
+npm run cy:open
 ```
+#### ✨ Demonstração da Execução dos Testes:
+![Demonstração da execução dos testes de API](assets/demo.gif)
 
 ---
 ## 🐛 Bugs encontrados durante a execução dos testes
@@ -120,12 +122,14 @@ A estrutura de pastas foi organizada para facilitar a manutenção e localizaç�
 
 ```
 📁 desafio-01-api
- ┣ 📁 cypress
- ┃ ┣ 📁 downloads
- ┃ ┣ 📁 e2e
- ┃ ┃ ┗ 📁 api
+ ┣ 📁 assets                       
+ ┃ ┗ 📄 demo.gif
+ ┣ 📁 cypress                      
+ ┃ ┣ 📁 downloads/                 
+ ┃ ┣ 📁 e2e/
+ ┃ ┃ ┗ 📁 api/                   
  ┃ ┃   ┗ 📄 api.cy.js
- ┃ ┣ 📁 evidence
+ ┃ ┣ 📁 evidences/                 
  ┃ ┃ ┣ 📄 bug01.png
  ┃ ┃ ┣ 📄 bug02.png
  ┃ ┃ ┣ 📄 bug03.png
@@ -135,24 +139,24 @@ A estrutura de pastas foi organizada para facilitar a manutenção e localizaç�
  ┃ ┃ ┣ 📄 bug07.png
  ┃ ┃ ┣ 📄 bug08.png
  ┃ ┃ ┗ 📄 bug09.png
- ┃ ┣ 📁 fixtures
- ┃ ┃ ┗ 📁 schemas
+ ┃ ┣ 📁 fixtures/
+ ┃ ┃ ┗ 📁 schemas/                 
  ┃ ┃   ┣ 📄 post_comments_schema.json
  ┃ ┃   ┗ 📄 post_schema.json
- ┃ ┣ 📁 screenshots
- ┃ ┗ 📁 support
- ┃   ┣ 📁 factories
+ ┃ ┣ 📁 screenshots/                 
+ ┃ ┗ 📁 support/
+ ┃   ┣ 📁 factories/               
  ┃   ┃ ┗ 📄 factory.js
- ┃   ┣ 📄 commands.js
- ┃   ┣ 📄 e2e.js
- ┃   ┗ 📄 helpers.js
- ┣ 📁 node_modules
- ┣ 📄 .gitignore
- ┣ 📄 BUG_REPORT.md
- ┣ 📄 cypress.config.js
- ┣ 📄 package-lock.json
- ┣ 📄 package.json
- ┗ 📄 README.md
+ ┃   ┣ 📄 commands.js              
+ ┃   ┣ 📄 e2e.js                   
+ ┃   ┗ 📄 helpers.js               
+ ┣ 📁 node_modules/                  
+ ┣ 📄 .gitignore                     
+ ┣ 📄 BUG_REPORT.md                 
+ ┣ 📄 cypress.config.js              
+ ┣ 📄 package-lock.json             
+ ┣ 📄 package.json                  
+ ┗ 📄 README.md                      
 ```
 
 ---
