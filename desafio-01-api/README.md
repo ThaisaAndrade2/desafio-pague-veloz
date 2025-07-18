@@ -13,7 +13,7 @@ Este repositório contém a suíte de testes automatizados para a API JSONPlaceh
 - [⚙️ Instalação](#️-instalação)
 - [🛠️ Configuração do Ambiente](#️-configuração-do-ambiente)
 - [🏃 Execução dos Testes](#-execução-dos-testes)
-- [🐛 Bugs encontrados](#bugs-encontrados-durante-a-execução-dos-testes)
+- [🐛 Bugs encontrados](#-bugs-encontrados)
 - [📂 Estrutura do Projeto](#-estrutura-do-projeto)
 - [🙋 Sobre mim](#-sobre-mim)
 - [✨ Contribuições](#-contribuições)
@@ -113,8 +113,12 @@ npm run cy:open
 ![Demonstração da execução dos testes de API](assets/demo.gif)
 
 ---
-## 🐛 Bugs encontrados durante a execução dos testes
-🐛 [Veja aqui os bugs encontrados no projeto](./BUG_REPORT.md)
+
+## 🐛 Bugs Encontrados
+
+[Veja aqui os bugs encontrados no projeto](./BUG_REPORT.md)
+
+---
 
 ## 📂 Estrutura do Projeto
 
