@@ -13,6 +13,7 @@ Este repositório contém a suíte de testes automatizados para a API JSONPlaceh
 - [⚙️ Instalação](#️-instalação)
 - [🛠️ Configuração do Ambiente](#️-configuração-do-ambiente)
 - [🏃 Execução dos Testes](#-execução-dos-testes)
+- [🐛 Bugs encontrados](#bugs-encontrados-durante-a-execução-dos-testes)
 - [📂 Estrutura do Projeto](#-estrutura-do-projeto)
 - [🙋 Sobre mim](#-sobre-mim)
 - [✨ Contribuições](#-contribuições)
@@ -110,33 +111,48 @@ npx cypress open
 ```
 
 ---
+## 🐛 Bugs encontrados durante a execução dos testes
+🐛 [Veja aqui os bugs encontrados no projeto](./BUG_REPORT.md)
 
 ## 📂 Estrutura do Projeto
 
 A estrutura de pastas foi organizada para facilitar a manutenção e localização dos arquivos:
 
 ```
-📁 cypress
- ┣ 📁 downloads
- ┣ 📁 e2e
- ┃ ┗ 📁 api
- ┃   ┗ 📄 api.cy.js # Arquivo de teste da API
- ┣ 📁 fixtures
- ┃ ┗ 📁 schemas
- ┃   ┣ 📄 post_comments_schema.json
- ┃   ┗ 📄 post_schema.json
- ┣ 📁 support
- ┃ ┣ 📁 factories
- ┃ ┃ ┗ 📄 factory.js
- ┃ ┣ 📄 commands.js
- ┃ ┣ 📄 e2e.js
- ┃ ┗ 📄 helpers.js
-📁 node_modules
-📄 .gitignore
-📄 cypress.config.js
-📄 package-lock.json
-📄 package.json
-📄 README.md
+📁 desafio-01-api
+ ┣ 📁 cypress
+ ┃ ┣ 📁 downloads
+ ┃ ┣ 📁 e2e
+ ┃ ┃ ┗ 📁 api
+ ┃ ┃   ┗ 📄 api.cy.js
+ ┃ ┣ 📁 evidence
+ ┃ ┃ ┣ 📄 bug01.png
+ ┃ ┃ ┣ 📄 bug02.png
+ ┃ ┃ ┣ 📄 bug03.png
+ ┃ ┃ ┣ 📄 bug04.png
+ ┃ ┃ ┣ 📄 bug05.png
+ ┃ ┃ ┣ 📄 bug06.png
+ ┃ ┃ ┣ 📄 bug07.png
+ ┃ ┃ ┣ 📄 bug08.png
+ ┃ ┃ ┗ 📄 bug09.png
+ ┃ ┣ 📁 fixtures
+ ┃ ┃ ┗ 📁 schemas
+ ┃ ┃   ┣ 📄 post_comments_schema.json
+ ┃ ┃   ┗ 📄 post_schema.json
+ ┃ ┣ 📁 screenshots
+ ┃ ┗ 📁 support
+ ┃   ┣ 📁 factories
+ ┃   ┃ ┗ 📄 factory.js
+ ┃   ┣ 📄 commands.js
+ ┃   ┣ 📄 e2e.js
+ ┃   ┗ 📄 helpers.js
+ ┣ 📁 node_modules
+ ┣ 📄 .gitignore
+ ┣ 📄 BUG_REPORT.md
+ ┣ 📄 cypress.config.js
+ ┣ 📄 package-lock.json
+ ┣ 📄 package.json
+ ┗ 📄 README.md
 ```
 
 ---
