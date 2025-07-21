@@ -1,0 +1,12 @@
+# Dependências do Node.js
+/node_modules
+
+# Os artefatos do Cypress serão gerados em tempo de execução
+/cypress/screenshots/
+
+# Relatórios e arquivos de configuração gerados
+/cypress/reports/
+relatorio.json
+
+
+

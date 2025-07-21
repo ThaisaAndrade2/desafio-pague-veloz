@@ -1,0 +1,70 @@
+[Cenário 01 - Realizar login com usuário não cadastrado]
+Dado que o usuário acessa a página "https://commitquality.com/" com sucesso
+E clica na opção "Login"
+Quando preenche os campos de login com usuário e senha não cadastrados
+Então o sistema deve exibir a mensagem de erro "Invalid username or password"
+
+[Cenário 02 - Realizar login preenchendo somente um dos campos]
+Dado que o usuário acessa a página "https://commitquality.com/" com sucesso
+E clica na opção "Login"
+Quando preenche apenas um dos campos de login
+Então o sistema deve exibir a mensagem de erro "Please enter a username and password"
+
+[Cenário 03 - Buscar produtos existentes]
+Dado que o usuário acessa a página "https://commitquality.com/" com sucesso
+Quando busca por um produto existente
+Então o sistema exibe os produtos encontrados
+
+[Cenário 04 - Buscar produtos inexistentes]
+Dado que o usuário acessa a página "https://commitquality.com/" com sucesso
+Quando busca por um produto inexistente
+Então o sistema deve exibir a mensagem de erro "No products found"
+
+[Cenário 05 - Criar item com dados preenchidos corretamente]
+Dado que o usuário acessa a página "https://commitquality.com/" com sucesso
+E o sistema exibe os produtos existentes
+Quando clica na opção "Add a Product"
+E preenche os campos "Name", "Price" e "Date Stocked" corretamente
+E clica em "Submit"
+Então o produto é cadastrado com sucesso
+
+[Cenário 06 - Preencher formulário com dados inválidos]
+Dado que o usuário acessa a página "https://commitquality.com/" com sucesso
+E o sistema exibe os produtos existentes
+Quando clica na opção "Add a Product"
+E preenche campos do formulário com dados inválidos
+E clica em "Submit"
+Então o sistema exibe mensagem de erro geral e específica no campo inválido
+
+[Cenário 07 - Preencher formulário sem preencher todos os dados obrigatórios]
+Dado que o usuário acessa a página "https://commitquality.com/" com sucesso
+E o sistema exibe os produtos existentes
+Quando clica na opção "Add a Product"
+E não preenche todos os campos obrigatórios
+E clica em "Submit"
+Então o sistema exibe a mensagem "Errors must be resolved before submitting" e destaca os campos não preenchidos
+
+[Cenário 08 - Visualizar mais itens criados]
+Dado que o usuário acessa a página "https://commitquality.com/" com sucesso
+E o sistema exibe os produtos existentes
+Quando clica na opção "Show More"
+Então mais itens são exibidos
+
+[Cenário 09 - Cancelar o preenchimento do formulário]
+Dado que o usuário acessa a página "https://commitquality.com/" com sucesso
+E o sistema exibe os produtos existentes
+Quando clica na opção "Add a Product"
+E preenche os campos do formulário
+E clica em "Cancelar"
+Então o usuário retorna para a página inicial
+
+
+[Cenário 10 - Limpeza dos filtros de busca]
+Dado que o usuário acessa a página "https://commitquality.com/" com sucesso
+Quando busca por um produto existente
+E o sistema exibe os produtos encontrados
+Então ao limpar o filtro, todos os produtos são exibidos novamente
+
+--Validações gerais:
+Validações dos componetes da tela
+Validações dos dois menus: Practice e Learn

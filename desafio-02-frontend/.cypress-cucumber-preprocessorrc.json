@@ -1,0 +1,12 @@
+{
+  "stepDefinitions": [
+    "cypress/e2e/steps/*.{js,ts}",
+    "cypress/support/*.{js,ts}",
+    "cypress/e2e/features/**/*.{js,ts}"
+  ],
+  "json": {
+    "enabled": true,
+    "output": "cypress/reports/relatorio.json",
+    "formatter": "cucumber-json-formatter"
+  }
+}
